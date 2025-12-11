@@ -2,6 +2,7 @@
 
 echo "Starting ngrok..."
 
+AUTH_TOKEN=$(bashio::config 'auth_token')
 HOST=$(bashio::config 'host')
 REGION=$(bashio::config 'region')
 DOMAIN=$(bashio::config 'domain')
