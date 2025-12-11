@@ -2,8 +2,9 @@
 
 echo "Starting ngrok..."
 
-AUTH_TOKEN=$(bashio::config 'auth_token')
 HOST=$(bashio::config 'host')
+REGION=$(bashio::config 'region')
+DOMAIN=$(bashio::config 'domain')
 
 if [ -z "$AUTH_TOKEN" ]; then
     bashio::log.error "No auth_token provided. Please configure the add-on."
@@ -17,10 +18,21 @@ fi
 
 ngrok config add-authtoken "$AUTH_TOKEN"
 
+CMD_ARGS=""
+if [ -n "$REGION" ]; then
+    bashio::log.info "Using region: $REGION"
+    CMD_ARGS="$CMD_ARGS --region=$REGION"
+fi
+
+if [ -n "$DOMAIN" ]; then
+    bashio::log.info "Using custom domain: $DOMAIN"
+    CMD_ARGS="$CMD_ARGS --domain=$DOMAIN"
+fi
+
 bashio::log.info "Starting ngrok tunnel..."
 
 # Start ngrok in background
-ngrok http $HOST:8123 --log stdout &
+ngrok http $HOST:8123 $CMD_ARGS --log stdout &
 NGROK_PID=$!
 
 # Wait for API to be available
