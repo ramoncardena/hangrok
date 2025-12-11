@@ -1,5 +1,5 @@
 name: "HA ngrok"
-version: "1.0.4"
+version: "1.0.5"
 slug: "ngrok"
 description: "Expose your Home Assistant instance to the internet using ngrok."
 url: "https://github.com/yourusername/hangrok"

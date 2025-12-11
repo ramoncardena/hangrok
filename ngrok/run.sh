@@ -14,7 +14,7 @@ ngrok config add-authtoken "$AUTH_TOKEN"
 bashio::log.info "Starting ngrok tunnel..."
 
 # Start ngrok in background
-ngrok http homeassistant:8123 --log stdout > /dev/null &
+ngrok http 192.168.1.105:8123 --log stdout > /dev/null &
 NGROK_PID=$!
 
 # Wait for API to be available
