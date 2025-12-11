@@ -3,6 +3,7 @@
 echo "Starting ngrok..."
 
 AUTH_TOKEN=$(bashio::config 'auth_token')
+HOST=$(bashio::config 'host')
 
 if [ -z "$AUTH_TOKEN" ]; then
     bashio::log.error "No auth_token provided. Please configure the add-on."
@@ -14,7 +15,7 @@ ngrok config add-authtoken "$AUTH_TOKEN"
 bashio::log.info "Starting ngrok tunnel..."
 
 # Start ngrok in background
-ngrok http 192.168.1.105:8123 --log stdout > /dev/null &
+ngrok http $HOST:8123 --log stdout > /dev/null &
 NGROK_PID=$!
 
 # Wait for API to be available
@@ -27,14 +28,12 @@ done
 
 # Get URL
 PUBLIC_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
-TUNNEL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0]')
 
 if [ "$PUBLIC_URL" != "null" ] && [ -n "$PUBLIC_URL" ]; then
     bashio::log.info "---------------------------------------------------"
     bashio::log.info "   "
     bashio::log.info "   Ngrok Tunnel started!"
     bashio::log.info "   Public URL: $PUBLIC_URL"
-    bashio::log.info "   Tunnels: $TUNNEL"
     bashio::log.info "   "
     bashio::log.info "---------------------------------------------------"
 else
