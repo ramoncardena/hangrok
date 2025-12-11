@@ -27,12 +27,14 @@ done
 
 # Get URL
 PUBLIC_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+TUNNEL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0]')
 
 if [ "$PUBLIC_URL" != "null" ] && [ -n "$PUBLIC_URL" ]; then
     bashio::log.info "---------------------------------------------------"
     bashio::log.info "   "
     bashio::log.info "   Ngrok Tunnel started!"
     bashio::log.info "   Public URL: $PUBLIC_URL"
+    bashio::log.info "   Tunnels: $TUNNEL"
     bashio::log.info "   "
     bashio::log.info "---------------------------------------------------"
 else
