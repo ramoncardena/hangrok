@@ -20,7 +20,7 @@ ngrok config add-authtoken "$AUTH_TOKEN"
 bashio::log.info "Starting ngrok tunnel..."
 
 # Start ngrok in background
-ngrok http $HOST:8123 --log stdout > /dev/null &
+ngrok http $HOST:8123 --log stdout &
 NGROK_PID=$!
 
 # Wait for API to be available
