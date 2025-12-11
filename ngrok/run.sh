@@ -10,6 +10,11 @@ if [ -z "$AUTH_TOKEN" ]; then
     exit 1
 fi
 
+if [ -z "$HOST" ]; then
+    bashio::log.error "No host provided. Please configure the add-on."
+    exit 1
+fi
+
 ngrok config add-authtoken "$AUTH_TOKEN"
 
 bashio::log.info "Starting ngrok tunnel..."
