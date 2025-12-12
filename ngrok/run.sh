@@ -19,9 +19,11 @@ fi
 
 # Create ngrok config file
 mkdir -p /root/.config/ngrok
-echo "version: 2" > /root/.config/ngrok/ngrok.yml
-echo "authtoken: $AUTH_TOKEN" >> /root/.config/ngrok/ngrok.yml
-echo "web_addr: 0.0.0.0:4040" >> /root/.config/ngrok/ngrok.yml
+cat > /root/.config/ngrok/ngrok.yml <<EOF
+version: "2"
+authtoken: $AUTH_TOKEN
+web_addr: 0.0.0.0:4040
+EOF
 
 CMD_ARGS=""
 if [ -n "$REGION" ]; then
