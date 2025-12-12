@@ -20,9 +20,10 @@ fi
 # Create ngrok config file
 mkdir -p /root/.config/ngrok
 cat > /root/.config/ngrok/ngrok.yml <<EOF
-version: "2"
-authtoken: $AUTH_TOKEN
-web_addr: 0.0.0.0:4040
+version: "3"
+agent:
+  authtoken: $AUTH_TOKEN
+  web_addr: 0.0.0.0:4040
 EOF
 
 CMD_ARGS=""
