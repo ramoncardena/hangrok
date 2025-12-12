@@ -18,6 +18,7 @@ if [ -z "$HOST" ]; then
 fi
 
 ngrok config add-authtoken "$AUTH_TOKEN"
+echo "web_addr: 0.0.0.0:4040" >> /root/.config/ngrok/ngrok.yml
 
 CMD_ARGS=""
 if [ -n "$REGION" ]; then
