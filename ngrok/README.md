@@ -11,4 +11,16 @@ This add-on allows you to expose your Home Assistant instance to the internet us
 
 ## Configuration
 
+## Configuration
+
 **auth_token**: Your ngrok authtoken. Get it from your [ngrok dashboard](https://dashboard.ngrok.com/get-started/your-authtoken).
+
+### Optional Configuration
+
+**region**: The region where the tunnel will be established (e.g., `us`, `eu`, `ap`, `au`, `sa`, `jp`, `in`). Default is `us`.
+**domain**: A custom domain if you have a paid ngrok plan (e.g., `my-home.ngrok.app`).
+**host**: The host to forward to (default: `homeassistant`).
+
+## Web Interface
+
+This add-on supports Ingress. You can click the **"Open Web UI"** button to view the ngrok status dashboard directly within Home Assistant.
