@@ -38,6 +38,7 @@ if [ -n "$DOMAIN" ]; then
 fi
 
 bashio::log.info "Starting nginx for Ingress..."
+mkdir -p /run/nginx
 nginx -c /nginx.conf &
 
 bashio::log.info "Starting ngrok tunnel..."
