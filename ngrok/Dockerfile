@@ -12,7 +12,8 @@ RUN apk add --no-cache curl \
     && if [ "${BUILD_ARCH}" = "i386" ]; then ARCH="386"; fi \
     && curl -Lo /ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-${ARCH}.tgz \
     && tar -xzf /ngrok.tgz -C /usr/local/bin \
-    && rm /ngrok.tgz
+    && rm /ngrok.tgz \
+    && apk add --no-cache jq
 
 # Copy data for add-on
 COPY run.sh /

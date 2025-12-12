@@ -1,5 +1,5 @@
-name: "ngrok"
-version: "1.0.0"
+name: "HA ngrok"
+version: "1.0.9"
 slug: "ngrok"
 description: "Expose your Home Assistant instance to the internet using ngrok."
 url: "https://github.com/yourusername/hangrok"
@@ -13,7 +13,14 @@ arch:
 init: false
 map:
   - config:rw
+panel_icon: "mdi:home-export-outline"
 options:
+  host: "homeassistant"
   auth_token: ""
+  region: ""
+  domain: ""
 schema:
+  host: str
   auth_token: str
+  region: list(us|eu|ap|au|sa|jp|in)?
+  domain: str?
