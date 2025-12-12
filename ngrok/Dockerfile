@@ -13,10 +13,11 @@ RUN apk add --no-cache curl \
     && curl -Lo /ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-${ARCH}.tgz \
     && tar -xzf /ngrok.tgz -C /usr/local/bin \
     && rm /ngrok.tgz \
-    && apk add --no-cache jq
+    && apk add --no-cache jq nginx
 
 # Copy data for add-on
 COPY run.sh /
+COPY nginx.conf /
 RUN chmod a+x /run.sh
 
 CMD [ "/run.sh" ]

@@ -1,5 +1,5 @@
 name: "HA ngrok"
-version: "1.0.14"
+version: "1.0.15"
 slug: "ngrok"
 description: "Expose your Home Assistant instance to the internet using ngrok."
 url: "https://github.com/yourusername/hangrok"
@@ -14,7 +14,7 @@ init: false
 map:
   - config:rw
 ingress: true
-ingress_port: 4040
+ingress_port: 8099
 panel_icon: "mdi:home-export-outline"
 options:
   host: "homeassistant"

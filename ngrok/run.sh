@@ -17,13 +17,12 @@ if [ -z "$HOST" ]; then
     exit 1
 fi
 
-# Create ngrok config file
 mkdir -p /root/.config/ngrok
 cat > /root/.config/ngrok/ngrok.yml <<EOF
 version: "3"
 agent:
   authtoken: $AUTH_TOKEN
-  web_addr: 0.0.0.0:4040
+  web_addr: 127.0.0.1:4040
   web_allow_hosts: []
 EOF
 
@@ -37,6 +36,9 @@ if [ -n "$DOMAIN" ]; then
     bashio::log.info "Using custom domain: $DOMAIN"
     CMD_ARGS="$CMD_ARGS --domain=$DOMAIN"
 fi
+
+bashio::log.info "Starting nginx for Ingress..."
+nginx -c /nginx.conf &
 
 bashio::log.info "Starting ngrok tunnel..."
 
