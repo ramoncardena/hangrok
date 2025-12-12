@@ -24,6 +24,7 @@ version: "3"
 agent:
   authtoken: $AUTH_TOKEN
   web_addr: 0.0.0.0:4040
+  web_allow_hosts: []
 EOF
 
 CMD_ARGS=""
